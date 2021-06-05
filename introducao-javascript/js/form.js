@@ -3,8 +3,20 @@ botao.addEventListener("click", function(event){
     event.preventDefault();
 
     var form = document.querySelector("#adiciona-paciente");
-
     var paciente = obtemPacienteDoFormulario(form);
+
+    var pacienteTr = adicionaPacienteNaTela(paciente);
+
+    var tabela = document.querySelector("#tabela-pacientes");
+
+    tabela.appendChild(pacienteTr);
+
+    console.log(pacienteTr);
+    
+    form.reset();
+});
+
+function adicionaPacienteNaTela(paciente){
 
     var pacienteTr = montaTr(paciente);
 
@@ -22,15 +34,9 @@ botao.addEventListener("click", function(event){
         return;
     }
 
-    var tabela = document.querySelector("#tabela-pacientes");
+    return pacienteTr;
 
-    tabela.appendChild(pacienteTr);
-
-    console.log(pacienteTr);
-    
-    form.reset();
-});
-
+}
     
     
 
