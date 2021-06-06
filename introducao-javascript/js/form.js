@@ -4,38 +4,31 @@ botao.addEventListener("click", function(event){
 
     var form = document.querySelector("#adiciona-paciente");
     var paciente = obtemPacienteDoFormulario(form);
-
-    var pacienteTr = adicionaPacienteNaTela(paciente);
-
-    var tabela = document.querySelector("#tabela-pacientes");
-
-    tabela.appendChild(pacienteTr);
-
-    console.log(pacienteTr);
-    
-    form.reset();
-});
-
-function adicionaPacienteNaTela(paciente){
-
-    var pacienteTr = montaTr(paciente);
-
     var erros = validaPaciente(paciente);
-
+    
+    
     if (erros.length > 0) {
         exibeMensagensDeErro(erros);
         return;
     }
     var mensagensErro = document.querySelector("#mensagens-erro");
     mensagensErro.innerHTML = "";
-
+    
     if(!validaPeso(paciente.peso)){
         console.log("Peso do paciente inválido");
         return;
     }
+    
+    adicionaPacienteNaTabela(paciente);
+    var tabela = document.querySelector("#tabela-pacientes");
+    
+    form.reset();
+});
 
-    return pacienteTr;
-
+function adicionaPacienteNaTabela(paciente) {
+    var pacienteTr = montaTr(paciente);
+    var tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr);
 }
     
     
